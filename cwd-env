@@ -1,0 +1,29 @@
+if [ -f "$HOME/.env" ]
+then
+  . $HOME/.env
+  e=1
+fi
+local=`pwd`
+while [  "$local" != "/" ]  && [ ! -f "$local/.env"  ]
+do
+  local=`dirname $local`
+done
+if [ -f "$local/.env" ]
+then
+  . "$local/.env"
+  e=1
+fi
+
+if [ -z "$*" ]
+then
+  echo "Usage:"
+  echo "  $0 <command>"
+  echo ""
+  echo "Runs a command in an environment modified by local scripts."
+  echo "Place scripts in ~/.env, ./.env or any parent directory."
+elif [ -z "$e" ]	
+then
+  echo "No scripts found; running command in unmodified environment."
+fi
+
+$*
