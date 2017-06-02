@@ -21,7 +21,7 @@ then
   echo ""
   echo "Runs a command in an environment modified by local scripts."
   echo "Place scripts in ~/.env, ./.env or any parent directory."
-elif [ -z "$e" ]	
+elif [ -z "$e" ]
 then
   echo "No scripts found; running command in unmodified environment."
 fi
